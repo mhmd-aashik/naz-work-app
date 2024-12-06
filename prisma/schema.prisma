@@ -1,0 +1,26 @@
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+enum Role {
+  admin
+  user
+}
+
+model Profile {
+  id       Int       @id @default(autoincrement())
+  clerkId  String    @unique
+  role     Role?     @default(user)
+  username String    @unique
+  name     String
+  password String?
+  picture  String?
+  email    String
+  joined   DateTime? @default(now())
+}
