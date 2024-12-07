@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React from "react";
 
 interface EmployeesCardProps {
@@ -19,7 +20,8 @@ const EmploeesCard = ({
   console.log(skill);
 
   return (
-    <div
+    <Link
+      href={`/employee/${id}`}
       key={id}
       className="border rounded-xl p-6 flex flex-col gap-4 shadow-xl bg-white hover:shadow-2xl transition-transform transform hover:scale-105"
     >
@@ -37,7 +39,7 @@ const EmploeesCard = ({
       <div className="mt-2">
         <p className="text-lg font-semibold text-gray-700 mb-2">🚀 Skills:</p>
         <ul className="list-disc list-inside space-y-1">
-          {skill.map((s, i) => (
+          {skill.slice(0, 1).map((s, i) => (
             <li key={i} className="text-lg text-gray-800">
               {s}
             </li>
@@ -53,7 +55,7 @@ const EmploeesCard = ({
       >
         {availability ? "🟢 Available" : "🔴 Not Available"}
       </p>
-    </div>
+    </Link>
   );
 };
 

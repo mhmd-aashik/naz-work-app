@@ -5,7 +5,7 @@ import prisma from "../db";
 
 export const createUser = async (emploee: Employee) => {
   try {
-    const user = await prisma.employees.create({
+    const user = await prisma?.employees.create({
       data: {
         Name: emploee.Name,
         Position: emploee.Position,
@@ -21,7 +21,7 @@ export const createUser = async (emploee: Employee) => {
 
 export const getAllUser = async () => {
   try {
-    const user = await prisma.employees.findMany();
+    const user = await prisma?.employees?.findMany();
     return user;
   } catch (error) {
     console.error(error);
@@ -30,7 +30,7 @@ export const getAllUser = async () => {
 
 export const getUserById = async (id: number) => {
   try {
-    const user = await prisma.employees.findUnique({
+    const user = await prisma?.employees?.findUnique({
       where: {
         EmployeeID: id,
       },

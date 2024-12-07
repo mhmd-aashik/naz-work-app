@@ -2,6 +2,8 @@ import EmploeesCard from "@/components/EmploeesCard";
 import { getAllUser } from "@/lib/actions/user.action";
 import React from "react";
 
+export const revelidate = "static-dynamic";
+
 const Emploees = async () => {
   const employees = await getAllUser();
 
@@ -10,7 +12,7 @@ const Emploees = async () => {
       <div className="py-5">
         <h1 className="text-3xl font-bold">All Emploees</h1>
       </div>
-      <div className="grid sm:grid-cols-2 gap-5 ">
+      <div className="grid sm:grid-cols-2 gap-5 overflow-y-scroll ">
         {employees?.map((employee) => (
           <EmploeesCard
             key={employee.EmployeeID}
