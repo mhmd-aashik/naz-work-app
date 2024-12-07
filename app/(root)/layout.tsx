@@ -10,7 +10,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
       </div>
 
       {/* Main Content */}
-      <div className="flex flex-col w-full h-full md:pl-60 overflow-y-scroll">
+      <div className="flex flex-col w-full h-full overflow-y-scroll">
         {children}
       </div>
 

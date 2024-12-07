@@ -16,6 +16,7 @@ model Employees {
   AvailabilityStatus Boolean    @default(true)
   Tasks              Tasks[]    @relation("EmployeeTasks")
   Schedule           Schedule[]
+  createdAt          DateTime   @default(now())
 }
 
 model Machinery {

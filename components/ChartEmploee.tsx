@@ -1,6 +1,6 @@
 "use client";
 
-import { Pie, PieChart } from "recharts";
+import { Bar, BarChart, CartesianGrid, XAxis } from "recharts";
 
 import {
   Card,
@@ -15,60 +15,72 @@ import {
   ChartTooltip,
   ChartTooltipContent,
 } from "@/components/ui/chart";
-const chartData = [
-  { browser: "january", visitors: 275, fill: "var(--color-chrome)" },
-  { browser: "febrary", visitors: 200, fill: "var(--color-safari)" },
-  { browser: "march", visitors: 187, fill: "var(--color-firefox)" },
-  { browser: "april", visitors: 173, fill: "var(--color-edge)" },
-  { browser: "other", visitors: 90, fill: "var(--color-other)" },
-];
 
 const chartConfig = {
-  visitors: {
-    label: "Visitors",
-  },
-  chrome: {
-    label: "Chrome",
+  desktop: {
+    label: "Desktop",
     color: "hsl(var(--chart-1))",
-  },
-  safari: {
-    label: "Safari",
-    color: "hsl(var(--chart-2))",
-  },
-  firefox: {
-    label: "Firefox",
-    color: "hsl(var(--chart-3))",
-  },
-  edge: {
-    label: "Edge",
-    color: "hsl(var(--chart-4))",
-  },
-  other: {
-    label: "Other",
-    color: "hsl(var(--chart-5))",
   },
 } satisfies ChartConfig;
 
-interface ChartEmploeeProps {
-  name: string;
-}
+export function ChartEmploee({
+  filteredMonths,
+}: {
+  filteredMonths: { MonthCreated: string }[] | undefined;
+}) {
+  const months: string[] = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
 
-export function ChartEmploee({ name }: ChartEmploeeProps) {
+  const monthCount: Record<string, number> =
+    filteredMonths?.reduce((acc: Record<string, number>, item) => {
+      const month = item.MonthCreated;
+      acc[month] = (acc[month] || 0) + 1;
+      return acc;
+    }, {}) ?? {};
+
+  // Create the chart data
+  const chartData = months.map((month) => ({
+    month,
+    desktop: monthCount[month] || 0, // Use count or default to 0
+  }));
+
+  console.log(chartData);
+
   return (
-    <Card className="flex flex-col">
-      <CardHeader className="items-center pb-0">
-        <CardTitle>{name} Chart</CardTitle>
-        <CardDescription>January - June 2024</CardDescription>
+    <Card>
+      <CardHeader>
+        <CardTitle>Emploee Chart</CardTitle>
+        <CardDescription>January - December 2024-2025</CardDescription>
       </CardHeader>
-      <CardContent className="flex-1 pb-0">
-        <ChartContainer
-          config={chartConfig}
-          className="mx-auto aspect-square h-[450px] pb-0 [&_.recharts-pie-label-text]:fill-foreground"
-        >
-          <PieChart>
-            <ChartTooltip content={<ChartTooltipContent hideLabel />} />
-            <Pie data={chartData} dataKey="visitors" label nameKey="browser" />
-          </PieChart>
+      <CardContent>
+        <ChartContainer config={chartConfig} className="h-96">
+          <BarChart accessibilityLayer data={chartData}>
+            <CartesianGrid vertical={false} />
+            <XAxis
+              dataKey="month"
+              tickLine={false}
+              tickMargin={10}
+              axisLine={false}
+              tickFormatter={(value) => value.slice(0, 3)}
+            />
+            <ChartTooltip
+              cursor={false}
+              content={<ChartTooltipContent hideLabel />}
+            />
+            <Bar dataKey="desktop" fill="var(--color-desktop)" radius={8} />
+          </BarChart>
         </ChartContainer>
       </CardContent>
     </Card>
