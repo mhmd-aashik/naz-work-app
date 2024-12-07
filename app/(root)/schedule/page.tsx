@@ -5,22 +5,20 @@ import React from "react";
 const Schedule = async () => {
   const schedules = await getAllSchedule();
 
-  console.log(schedules, "schedule");
-
   return (
     <div className="mt-10 max-w-5xl mx-auto px-2">
       <div className="py-5">
         <h1 className="text-3xl font-bold">All Schedules</h1>
       </div>
-      <div className="grid sm:grid-cols-2 gap-5 ">
+      <div className="grid sm:grid-cols-2 gap-5">
         {schedules?.map((schedule) => (
           <ScheduleCard
             key={schedule.ScheduleID}
             id={schedule.ScheduleID}
             scheduledStartTime={schedule.ScheduledStartTime || ""}
-            scheduledEndTime={schedule.ScheduledEndTime}
-            employee={schedule.Employee.Name || ""}
-            task={schedule.Task.TaskDescription || ""}
+            scheduledEndTime={schedule.ScheduledEndTime || ""}
+            employee={schedule.Employee?.Name || ""}
+            task={schedule.Task?.TaskDescription || ""}
           />
         ))}
       </div>

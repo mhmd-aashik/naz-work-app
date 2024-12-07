@@ -28,7 +28,7 @@ export interface Task {
   Schedule?: Schedule[];
 }
 
-export interface Schedule {
+interface Schedule {
   ScheduleID: number;
   Employee: Employee;
   EmployeeID: number;
