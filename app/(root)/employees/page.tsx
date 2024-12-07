@@ -2,8 +2,6 @@ import EmploeesCard from "@/components/EmploeesCard";
 import { getAllUser } from "@/lib/actions/user.action";
 import React from "react";
 
-export const revelidate = "static-dynamic";
-
 const Emploees = async () => {
   const employees = await getAllUser();
 
