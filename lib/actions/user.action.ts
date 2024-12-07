@@ -1,21 +1,73 @@
 "use server";
 
+import { Employee } from "@/types";
 import prisma from "../db";
 
-export const createUser = async (userData: CreateUserParams) => {
+export const createUser = async (emploee: Employee) => {
   try {
-    const newUser = await prisma.profile.create({
+    const user = await prisma.employees.create({
       data: {
-        clerkId: userData.clerkId,
-        role: userData.role,
-        username: userData.username,
-        name: userData.name,
-        password: userData.password,
-        picture: userData.picture,
-        email: userData.email,
+        Name: emploee.Name,
+        Position: emploee.Position,
+        SkillSet: emploee.SkillSet,
+        AvailabilityStatus: emploee.AvailabilityStatus,
       },
     });
-    return newUser;
+    return user;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const getAllUser = async () => {
+  try {
+    const user = await prisma.employees.findMany();
+    return user;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const getUserById = async (id: number) => {
+  try {
+    const user = await prisma.employees.findUnique({
+      where: {
+        EmployeeID: id,
+      },
+    });
+    return user;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const updateUser = async (id: number, emploee: Employee) => {
+  try {
+    const user = await prisma.employees.update({
+      where: {
+        EmployeeID: id,
+      },
+      data: {
+        Name: emploee.Name,
+        Position: emploee.Position,
+        SkillSet: emploee.SkillSet,
+        AvailabilityStatus: emploee.AvailabilityStatus,
+      },
+    });
+    return user;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const deleteUser = async (id: number) => {
+  try {
+    const user = await prisma.employees.delete({
+      where: {
+        EmployeeID: id,
+      },
+    });
+    return user;
   } catch (error) {
     console.error(error);
   }
