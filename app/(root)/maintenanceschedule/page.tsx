@@ -2,6 +2,8 @@ import MaintenanceSchedulecard from "@/components/MaintenanceSchedulecard";
 import { getAllMaintenanceSchedule } from "@/lib/actions/maintenanceschedule.action";
 import React from "react";
 
+export const revalidate = 0; // revalidate the data at most every hour
+
 const MaintenanceSchedule = async () => {
   const maintenanceschedules = await getAllMaintenanceSchedule();
 

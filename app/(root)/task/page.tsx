@@ -2,6 +2,8 @@ import TasksCard from "@/components/TasksCard";
 import { getAllTasks } from "@/lib/actions/task.action";
 import React from "react";
 
+export const revalidate = 0; // revalidate the data at most every hour
+
 const Task = async () => {
   const tasks = await getAllTasks();
 

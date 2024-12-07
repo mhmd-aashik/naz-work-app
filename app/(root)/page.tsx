@@ -3,6 +3,8 @@ import EmploeeDetails from "@/components/EmploeeDetails";
 import { ChartEmploee } from "@/components/ChartEmploee";
 import { getAllUser } from "@/lib/actions/user.action";
 
+export const revalidate = 0; // revalidate the data at most every hour
+
 const Home = async () => {
   const employeeData = await getAllUser();
 

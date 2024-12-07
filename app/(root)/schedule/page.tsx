@@ -2,6 +2,8 @@ import ScheduleCard from "@/components/ScheduleCard";
 import { getAllSchedule } from "@/lib/actions/schedule.action";
 import React from "react";
 
+export const revalidate = 0; // revalidate the data at most every hour
+
 const Schedule = async () => {
   const schedules = await getAllSchedule();
 

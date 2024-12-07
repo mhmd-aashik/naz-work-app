@@ -2,6 +2,8 @@ import MachineryCard from "@/components/MachineryCard";
 import { getAllMachinery } from "@/lib/actions/machinary.action";
 import React from "react";
 
+export const revalidate = 0; // revalidate the data at most every hour
+
 const Machinary = async () => {
   const machinery = await getAllMachinery();
 
