@@ -13,7 +13,7 @@ model Employees {
   Name               String?
   Position           String
   SkillSet           String?
-  AvailabilityStatus Boolean    @default(true)
+  AvailabilityStatus Boolean    @default(false)
   Tasks              Tasks[]    @relation("EmployeeTasks")
   Schedule           Schedule[]
   createdAt          DateTime   @default(now())

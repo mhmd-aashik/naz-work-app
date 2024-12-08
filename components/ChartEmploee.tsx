@@ -65,7 +65,7 @@ export function ChartEmploee({
         <CardDescription>January - December 2024-2025</CardDescription>
       </CardHeader>
       <CardContent>
-        <ChartContainer config={chartConfig} className="h-96">
+        <ChartContainer config={chartConfig} className="md:h-60 lg:h-96">
           <BarChart accessibilityLayer data={chartData}>
             <CartesianGrid vertical={false} />
             <XAxis

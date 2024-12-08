@@ -2,10 +2,11 @@
 
 import { Employee } from "@/types";
 import prisma from "../db";
+import { revalidatePath } from "next/cache";
 
 export const createUser = async (emploee: Employee) => {
   try {
-    const user = await prisma.employees.create({
+    await prisma.employees.create({
       data: {
         Name: emploee.Name,
         Position: emploee.Position,
@@ -13,7 +14,7 @@ export const createUser = async (emploee: Employee) => {
         AvailabilityStatus: emploee.AvailabilityStatus,
       },
     });
-    return user;
+    revalidatePath("/employees");
   } catch (error) {
     console.error(error);
   }
@@ -22,19 +23,6 @@ export const createUser = async (emploee: Employee) => {
 export const getAllUser = async () => {
   try {
     const user = await prisma.employees.findMany();
-    return user;
-  } catch (error) {
-    console.error(error);
-  }
-};
-
-export const getUserById = async (id: number) => {
-  try {
-    const user = await prisma.employees.findUnique({
-      where: {
-        EmployeeID: id,
-      },
-    });
     return user;
   } catch (error) {
     console.error(error);
