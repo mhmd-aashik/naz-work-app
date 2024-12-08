@@ -6,8 +6,8 @@ const EmploeeDetails = async () => {
   const emploees = await getAllUser();
   const machines = await getAllMachinery();
 
-  const totalEmploees = emploees!.length;
-  const totalMachines = machines!.length;
+  const totalEmploees = emploees?.length;
+  const totalMachines = machines?.length;
 
   return (
     <div className="flex flex-wrap gap-10 py-10 justify-center">
