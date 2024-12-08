@@ -6,15 +6,15 @@ import { getAllUser } from "@/lib/actions/user.action";
 export const revalidate = 0; // revalidate the data at most every hour
 
 const Home = async () => {
-  const employeeData = await getAllUser();
+  // const employeeData = await getAllUser();
 
-  const filteredMonths = employeeData?.map((employee) => {
-    const createdAtDate = new Date(employee.createdAt);
-    const month = createdAtDate.toLocaleString("default", { month: "long" });
-    return {
-      MonthCreated: month,
-    };
-  });
+  // const filteredMonths = employeeData?.map((employee) => {
+  //   const createdAtDate = new Date(employee.createdAt);
+  //   const month = createdAtDate.toLocaleString("default", { month: "long" });
+  //   return {
+  //     MonthCreated: month,
+  //   };
+  // });
 
   return (
     <div>
@@ -24,7 +24,7 @@ const Home = async () => {
           <EmploeeDetails />
         </div>
         <div className="flex flex-col items-center justify-center w-full mt-10">
-          <ChartEmploee filteredMonths={filteredMonths} />
+          {/* <ChartEmploee filteredMonths={filteredMonths} /> */}
         </div>
       </div>
     </div>
