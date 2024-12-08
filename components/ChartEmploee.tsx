@@ -56,8 +56,6 @@ export function ChartEmploee({
     desktop: monthCount[month] || 0, // Use count or default to 0
   }));
 
-  console.log(chartData);
-
   return (
     <Card>
       <CardHeader>

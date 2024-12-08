@@ -17,7 +17,6 @@ const EmploeesCard = ({
   availability,
 }: EmployeesCardProps) => {
   const skill = skills.split(",");
-  console.log(skill);
 
   return (
     <Link

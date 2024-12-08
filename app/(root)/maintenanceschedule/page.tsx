@@ -7,7 +7,6 @@ export const revalidate = 0; // revalidate the data at most every hour
 const MaintenanceSchedule = async () => {
   const maintenanceschedules = await getAllMaintenanceSchedule();
 
-  console.log(maintenanceschedules, "maintenanceschedule");
   return (
     <div className="mt-10 max-w-5xl mx-auto px-2">
       <div className="py-5">
