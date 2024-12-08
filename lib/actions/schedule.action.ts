@@ -1,6 +1,6 @@
 "use server";
 
-import prisma from "../db";
+import prisma from "../../prisma/db";
 
 export const getAllSchedule = async () => {
   try {

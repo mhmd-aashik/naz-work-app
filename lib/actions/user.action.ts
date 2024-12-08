@@ -1,8 +1,7 @@
 "use server";
 
 import { Employee } from "@/types";
-import prisma from "../db";
-import { revalidatePath } from "next/cache";
+import prisma from "../../prisma/db";
 
 export const createUser = async (emploee: Employee) => {
   try {
@@ -14,7 +13,6 @@ export const createUser = async (emploee: Employee) => {
         AvailabilityStatus: emploee.AvailabilityStatus,
       },
     });
-    revalidatePath("/employees");
   } catch (error) {
     console.error(error);
   }
